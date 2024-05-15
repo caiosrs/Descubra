@@ -52,9 +52,30 @@
             <hr>
             <p>Qual é a resposta?</p>
         </div>
-        <p>H20</p>
-            <button class="btn btn-primary my-2" type="button" onclick="verificarPalpites()">Enviar Palpite</button>
-            <p id="resultado"></p>
+        <ul class="list-group">
+            <li class="list-group-item list-group-item-primary">
+                <label for="palpite1">Seu palpite:</label>
+                <input type="text" id="palpite1" name="palpite1" required>
+            </li>
+            <li class="list-group-item list-group-item-danger">
+                <label for="palpite2">Seu palpite:</label>
+                <input type="text" id="palpite2" name="palpite2" required>
+            </li>
+            <li class="list-group-item list-group-item-light">
+                <label for="palpite3">Seu palpite:</label>
+                <input type="text" id="palpite3" name="palpite3" required>
+            </li>
+            <li class="list-group-item list-group-item-success">
+                <label for="palpite4">Seu palpite:</label>
+                <input type="text" id="palpite4" name="palpite4" required>
+            </li>
+            <li class="list-group-item list-group-item-warning">
+                <label for="palpite5">Seu palpite:</label>
+                <input type="text" id="palpite5" name="palpite5" required>
+            </li>
+        </ul>
+        <button class="btn btn-primary my-2" type="button" onclick="verificarPalpites()">Enviar Palpite</button>
+        <p id="resultado"></p>
       </div>
     </div>
   </section>
@@ -76,29 +97,20 @@
         }
 
         // Verificando se os palpites estão em ordem correta
-        var correto = true;
-        for (var j = 0; j < 5; j++) {
-            if (palpites[j] !== respostasCorretas[j]) {
-                correto = false;
-                break;
-            }
-        }
+        var correto = palpites.every((palpite, index) => palpite === respostasCorretas[index]);
 
         // Exibindo o resultado
         var resultado = document.getElementById('resultado');
         if (correto) {
             resultado.textContent = 'Parabéns! Você acertou os palpites em ordem correta.';
-                if (confirm("Parabéns! Você acertou os palpites em ordem correta.")) {
-                    window.location.href = 'fasemagnifica.html';
-                }
-        }  else {
-          var resultado = document.getElementById('resultado');
-          // Exibir mensagem de "Aguardando resultado..."
-          resultado.innerHTML = 'Aguardando resultado...';
-          // Temporizador de 1 segundo antes de exibir o resultado real
-          setTimeout(function() {
-              resultado.innerHTML = 'Palpite incorreto. Tente novamente.';
-          }, 1000);
+            if (confirm("Parabéns! Você acertou os palpites em ordem correta.")) {
+                window.location.href = 'fasemagnifica.html';
+            }
+        } else {
+            resultado.innerHTML = 'Aguardando resultado...';
+            setTimeout(function() {
+                resultado.innerHTML = 'Palpite incorreto. Tente novamente.';
+            }, 1000);
         }
     }
 </script>
